@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugged')
 
 " syntax support
 Plug 'sheerun/vim-polyglot'
-
 " icons
 Plug 'ryanoasis/vim-devicons'
 
@@ -10,12 +9,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 " for </>
 Plug 'alvan/vim-closetag'
-
+" surround -> "surround"
 Plug 'tpope/vim-surround'
 
 " multiple cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
 " intelissense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " emmet
@@ -23,10 +21,8 @@ Plug 'mattn/emmet-vim'
 
 " nerdtree
 Plug 'preservim/nerdtree'
-
 " airline
 Plug 'vim-airline/vim-airline'
-
 "easymotion
 Plug 'easymotion/vim-easymotion'
 

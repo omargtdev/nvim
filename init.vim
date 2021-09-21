@@ -26,8 +26,8 @@ set nowritebackup
 " Give more space for displaying messages.
 set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience. and signify
-set updatetime=100
+" delays and poor user experience.
+set updatetime=400
 " Don't pass messages to |ins-completion-menu|.
 " for nvim 0.5.0 -> set signcolumn=number
 set signcolumn=yes
