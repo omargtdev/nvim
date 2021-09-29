@@ -12,10 +12,24 @@ set encoding=utf-8 " set encoding
 filetype plugin on
   
 let mapleader = " " 
+
+func! GetSelectedText()
+  normal gv"xy
+  let result = getreg("x")
+  return result
+endfunc
  
-" TIPS 
-" |____ paste from clipboard with "+p 
-" |____ copy to clipboard with "+y 
+" from wsl and windows
+if !has("clipboard")  && executable("clip.exe") && executable("powershell.exe")
+  vnoremap <leader>C :call system('clip.exe', GetSelectedText())<cr>
+  vnoremap <leader>X :call system('clip.exe', GetSelectedText())<cr>gvx
+  nnoremap <leader>P :r !powershell.exe -Command Get-Clipboard<cr>
+else
+  set clipboard=unnamedplus
+  "" TIPS 
+  " |____ paste from clipboard with "+p 
+  " |____ copy to clipboard with "+y 
+endif
  
 "-------------------------- Required for coc --------------------------"
 " TextEdit might fail if hidden is not set.
