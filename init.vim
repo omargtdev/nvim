@@ -41,7 +41,7 @@ set nowritebackup
 set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=400
+set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 " for nvim 0.5.0 -> set signcolumn=number
 set signcolumn=yes
@@ -75,7 +75,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " plugins
 source ~/.config/nvim/plugins.vim
 " theme
-source ~/.config/nvim/themes/gruvbox.vim
+" source ~/.config/nvim/themes/gruvbox.vim
+source ~/.config/nvim/themes/onedark.vim
 
 " Change to normal mode
 inoremap jk <Esc>
@@ -137,6 +138,11 @@ nnoremap <leader>a :Ag<cr>
 " execute
 nnoremap <leader>x :!node %<cr>
 
+" terminal
+nnoremap <silent> <F8> :FloatermToggle<CR>
+tnoremap <silent> <F8> <C-\><C-n>:FloatermToggle<CR>
+
+
 " ----------------- plugin config
 "  closetag
 let g:closetag_filetypes = 'html, javascript, jsx, xml'
@@ -144,40 +150,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
-set splitright
-" open terminal
-function! OpenTerminal()
-  " move to right most buffer
-  execute "normal \<C-l>"
-  execute "normal \<C-l>"
-  execute "normal \<C-l>"
-  execute "normal \<C-l>"
-
-  let bufNum = bufnr("%")
-  let bufType = getbufvar(bufNum, "&buftype", "not found")
-
-  if bufType == "terminal"
-    " close existing terminal
-    execute "q"
-  else
-    " open terminal
-    execute "vsp term://zsh"
-
-    " turn off numbers
-    execute "set nonu"
-    execute "set nornu"
-
-    " toggle insert on enter/exit
-    silent au BufLeave <buffer> stopinsert!
-    silent au BufWinEnter,WinEnter <buffer> startinsert!
-
-    " set maps inside terminal buffer
-    execute "tnoremap <buffer> <C-h> <C-\\><C-n><C-w><C-h>"
-    execute "tnoremap <buffer> <C-t> <C-\\><C-n>:q<CR>"
-    execute "tnoremap <buffer> <C-\\><C-\\> <C-\\><C-n>"
-
-    startinsert!
-  endif
-endfunction
-nnoremap <C-t> :call OpenTerminal()<CR>
+" floaterm
+let g:floaterm_width = 0.8
+let g:floaterm_height= 0.8

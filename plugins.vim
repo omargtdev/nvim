@@ -9,7 +9,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 " for </>
 Plug 'alvan/vim-closetag'
-" surround -> "surround"
+" surround
 Plug 'tpope/vim-surround'
 
 " multiple cursors
@@ -33,11 +33,14 @@ Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" not working for me :( repair later
-" Plug 'mhinz/vim-signify'
+" show a diff 
+Plug 'mhinz/vim-signify'
 
 " themes 
 Plug 'joshdick/onedark.vim' 
 Plug 'morhetz/gruvbox'
+
+" terminal
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
