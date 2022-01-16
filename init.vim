@@ -142,6 +142,8 @@ nnoremap <leader>x :!node %<cr>
 nnoremap <silent> <F8> :FloatermToggle<CR>
 tnoremap <silent> <F8> <C-\><C-n>:FloatermToggle<CR>
 
+" prettier format
+nmap <leader>P :CocCommand prettier.formatFile<CR>
 
 " ----------------- plugin config
 "  closetag
