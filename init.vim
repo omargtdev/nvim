@@ -13,22 +13,24 @@ filetype plugin on
   
 let mapleader = " " 
 
-func! GetSelectedText()
-  normal gv"xy
-  let result = getreg("x")
-  return result
-endfunc
- 
+set clipboard+=unnamedplus
+
 " from wsl and windows
-if !has("clipboard")  && executable("clip.exe") && executable("powershell.exe")
-  vnoremap <leader>C :call system('clip.exe', GetSelectedText())<cr>
-  vnoremap <leader>X :call system('clip.exe', GetSelectedText())<cr>gvx
-  nnoremap <leader>P :r !powershell.exe -Command Get-Clipboard<cr>
-else
-  set clipboard=unnamedplus
-  "" TIPS 
-  " |____ paste from clipboard with "+p 
-  " |____ copy to clipboard with "+y 
+if executable("wsl.exe")
+  " Copy or create a ln of 'win32yank' from 'wsl_tools' directory
+  " and put in somewhere place of your PATH
+  let g:clipboard = {
+            \   'name': 'win32yank-wsl',
+            \   'copy': {
+            \      '+': 'win32yank.exe -i --crlf',
+            \      '*': 'win32yank.exe -i --crlf',
+            \    },
+            \   'paste': {
+            \      '+': 'win32yank.exe -o --lf',
+            \      '*': 'win32yank.exe -o --lf',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
 endif
  
 "-------------------------- Required for coc --------------------------"
@@ -73,10 +75,10 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 "----------------------------------------------------------------------"
 
 " plugins
-source ~/.config/nvim/plugins.vim
+source $NVIM_CONFIG/plugins.vim
 " theme
 " source ~/.config/nvim/themes/gruvbox.vim
-source ~/.config/nvim/themes/onedark.vim
+source $NVIM_CONFIG/themes/onedark.vim
 
 " Change to normal mode
 inoremap jk <Esc>
@@ -143,7 +145,7 @@ nnoremap <silent> <F8> :FloatermToggle<CR>
 tnoremap <silent> <F8> <C-\><C-n>:FloatermToggle<CR>
 
 " prettier format
-nmap <leader>P :CocCommand prettier.formatFile<CR>
+nmap <leader>p :CocCommand prettier.formatFile<CR>
 
 " ----------------- plugin config
 "  closetag
