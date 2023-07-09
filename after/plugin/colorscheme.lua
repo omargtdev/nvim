@@ -1,6 +1,5 @@
-
 function NeovimWithLife(transparency, color)
-    color = color or "tokyonight-night"
+    color = color or "slate"
     vim.cmd.colorscheme(color)
 
     -- Set transparency background
@@ -9,5 +8,13 @@ function NeovimWithLife(transparency, color)
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end
 end
+
+if pcall(require, "tokyonight") then
+    --tokyonight config
+
+    NeovimWithLife(true, "tokyonight-night")
+    return
+end
+
 
 NeovimWithLife(true)

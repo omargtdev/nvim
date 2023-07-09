@@ -1,3 +1,2 @@
-require("omargtdev.remap")
-require("omargtdev.settings")
-require("omargtdev.packer")
+-- Requiring the best module
+require("omargtdev")

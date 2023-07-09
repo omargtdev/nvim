@@ -24,5 +24,7 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 
+-- Util for following good wrapping practices
 vim.opt.colorcolumn = "80"
-
+--Set defaultcolumn space for specific type files
+--vim.cmd("autocmd filetype java setlocal colorcolumn=100")

@@ -1,50 +1,29 @@
-local lsp = require('lsp-zero').preset({})
+if not pcall(require, "lsp-zero") then return end
 
-lsp.ensure_installed({
-	'tsserver',
-	'eslint',
-	'csharp_ls',
-	'lua_ls'
-})
-
-
-
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-	['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<CR>'] = cmp.mapping.confirm({ select = true }),
-	['<C-space>'] = cmp.mapping.complete(),
-	['<C-e>'] = cmp.mapping.abort(),
-})
-
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
-})
-
-lsp.set_preferences({
-	sign_icons = {}
+local lsp = require("lsp-zero").preset({
+    manage_nvim_cmp = {
+        set_sources = "recommended"
+    }
 })
 
 lsp.on_attach(function(client, bufnr)
-  local opts = { buffer = bufnr, remap = false }
+    -- Check defaults
+    lsp.default_keymaps({ buffer = bufnr })
 
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.open_float() end, opts)
-  vim.keymap.set("n", "[d", function() vim.lsp.diagnostic.goto_next() end, opts)
-  vim.keymap.set("n", "]d", function() vim.lsp.diagnostic.goto_prev() end, opts)
-  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-  vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  --lsp.default_keymaps({buffer = bufnr})
+    local opts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set("n", "gf", function() vim.lsp.buf.format() end, opts)
 end)
 
--- Specific settings
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+lsp.ensure_installed({
+    "tsserver",
+    "eslint"
+})
+
+-- Configure language servers
+local lspconfig = require("lspconfig")
+
+-- TODO: Set autocomplete functions
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
-
