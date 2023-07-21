@@ -14,7 +14,6 @@ vim.opt.backup = false
 
 local isWindowsOS = string.find(vim.loop.os_uname().sysname:lower(), "windows")
 local home = isWindowsOS and "USERPROFILE" or "HOME"
-print(home)
 vim.opt.undodir = os.getenv(home) .. "/.vim/undodir"
 vim.opt.undofile = true
 
