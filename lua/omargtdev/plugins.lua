@@ -28,6 +28,7 @@ return packer.startup(function(use)
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use 'nvim-treesitter/playground'
 
+
     use 'ThePrimeagen/harpoon'
 
     use 'mbbill/undotree' -- Amazing!
@@ -58,4 +59,6 @@ return packer.startup(function(use)
         }
     }
 
+    -- Java
+    use 'mfussenegger/nvim-jdtls'
 end)
