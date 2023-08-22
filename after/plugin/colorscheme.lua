@@ -9,12 +9,4 @@ function NeovimWithLife(transparency, color)
     end
 end
 
-if pcall(require, "tokyonight") then
-    --tokyonight config
-
-    NeovimWithLife(true, "tokyonight-night")
-    return
-end
-
-
 NeovimWithLife(true)

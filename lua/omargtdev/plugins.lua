@@ -21,20 +21,29 @@ return packer.startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    -- Themes
-    use 'folke/tokyonight.nvim'
+    -- Harpoon
+    use 'nvim-lua/plenary.nvim'
+    use 'ThePrimeagen/harpoon'
 
+    -- Check changes in current file
+    use 'mbbill/undotree' -- Amazing!
+    
     -- Parsing, highlightly and indenting
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use 'nvim-treesitter/playground'
 
+    -- Comment
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 
-    --use 'nvim-lua/plenary.nvim'
-    use 'ThePrimeagen/harpoon'
-
-    use 'mbbill/undotree' -- Amazing!
+    -- Git
     use 'tpope/vim-fugitive'
 
+    -- LSP
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
