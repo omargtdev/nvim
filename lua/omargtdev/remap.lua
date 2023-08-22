@@ -29,6 +29,8 @@ vim.keymap.set("v", "<leader>y", [["+y]]) -- Selected region
 vim.keymap.set("n", "<leader>d", [["_d]])
 vim.keymap.set("v", "<leader>d", [["_d]])
 
+vim.keymap.set("n", "<leader>c", "<cmd>bd<CR>") -- Close actual buffer
+
 -- Replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 

@@ -68,4 +68,5 @@ return packer.startup(function(use)
             { 'rafamadriz/friendly-snippets' }
         }
     }
+
 end)
