@@ -69,4 +69,7 @@ return packer.startup(function(use)
         }
     }
 
+    -- Theme
+    use ({ 'projekt0n/github-nvim-theme' })
+
 end)

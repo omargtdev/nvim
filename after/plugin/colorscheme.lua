@@ -9,4 +9,4 @@ function NeovimWithLife(transparency, color)
     end
 end
 
-NeovimWithLife(true)
+NeovimWithLife(true, "github_dark")
