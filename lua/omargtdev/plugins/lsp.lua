@@ -8,7 +8,7 @@ return {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      -- C#
+      -- C# Extensions
       'Hoffs/omnisharp-extended-lsp.nvim',
 
       -- Useful status updates for LSP
@@ -18,5 +18,11 @@ return {
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+    config = function()
+      -- mason-lspconfig requires that these setup functions are called in this order
+      -- before setting up the servers.
+      require('mason').setup()
+      require('mason-lspconfig').setup()
+    end
   }
 }

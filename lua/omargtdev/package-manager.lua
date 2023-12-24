@@ -11,14 +11,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('omargtdev.plugins', {})
-
-------- [[ LSP CONFIG ]]
-
--- mason-lspconfig requires that these setup functions are called in this order
--- before setting up the servers.
-require('mason').setup()
-require('mason-lspconfig').setup()
+require('lazy').setup({
+  { import = 'omargtdev.plugins.completion', lazy = false },
+  { import = 'omargtdev.plugins.lsp',        lazy = false },
+  { import = 'omargtdev.plugins.debug',      lazy = false },
+  { import = 'omargtdev.plugins.navigation', lazy = false },
+  { import = 'omargtdev.plugins.harpoon',    lazy = false },
+  { import = 'omargtdev.plugins.git',        lazy = false },
+  { import = 'omargtdev.plugins.comment' },
+  { import = 'omargtdev.plugins.identation' },
+  { import = 'omargtdev.plugins.terminal' },
+  { import = 'omargtdev.plugins.theme' }
+}, {})
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -42,8 +46,8 @@ local on_attach = function(client, bufnr)
 
   -- https://github.com/Hoffs/omnisharp-extended-lsp.nvim
   local definitionsFunction = client.name == 'omnisharp'
-    and require('omnisharp_extended').telescope_lsp_definitions
-    or require('telescope.builtin').lsp_definitions
+      and require('omnisharp_extended').telescope_lsp_definitions
+      or require('telescope.builtin').lsp_definitions
 
   nmap('gd', definitionsFunction, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
