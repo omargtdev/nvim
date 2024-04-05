@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>nd", vim.cmd.Ex)
+--vim.keymap.set("n", "<leader>nd", vim.cmd.Ex)
 
 vim.keymap.set("i", "jk", "<Esc>")
 
